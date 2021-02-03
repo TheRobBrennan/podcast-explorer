@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GRANDstack Title component should render with a supplied title 1`] = `[Function]`;
+
+exports[`GRANDstack Title component should render without children 1`] = `[Function]`;
