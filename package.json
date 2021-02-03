@@ -1,7 +1,7 @@
 {
   "name": "podcast-explorer",
   "version": "0.0.0",
-  "description": "This project is a continuation of my [Heimdall](https://github.com/TheRobBrennan/heimdall) project - which explores using the new alpha release of the [@neo4j/graphql](@neo4j/graphql) library within a [GRANDstack](https://grandstack.io) ([GraphQL](https://graphql.org), [React](https://reactjs.org), [Apollo](https://www.apollographql.com), [Neo4j Database](https://neo4j.com)) application.",
+  "description": "This project is a continuation of my [Heimdall](https://github.com/TheRobBrennan/heimdall) project - which explores using the new alpha release of the [@neo4j/graphql](@neo4j/graphql) library within a [GRANDstack](https://grandstack.io) ([GraphQL](https://graphql.org), [React](https://reactjs.org), [Apollo](https://www.apollographql.com), [Neo4j Database](https://neo4j.com)) application",
   "keywords": [],
   "author": "Rob Brennan <rob@therobbrennan.com> (therobbrennan.com)",
   "license": "ISC",
