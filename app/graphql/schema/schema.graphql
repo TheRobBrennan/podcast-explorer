@@ -23,6 +23,15 @@ type Ping {
 # extend type Ping @exclude(operations: "*")
 extend type Ping @exclude(operations: ["create", "update", "delete"])
 
+type PodcastSearchResult {
+  iTunesId: Int!
+  title: String!
+  releaseDate: DateTime
+  feedURL: String!
+  categories: [String]
+}
+extend type PodcastSearchResult @exclude(operations: "*")
+
 type Query {
   """
   A sample query to verify that our GraphQL server is online.
@@ -36,15 +45,18 @@ type Query {
       """
     )
 
-  """
-  A sample query to verify that our GraphQL server is online.
-
-  It returns the total number of nodes within our graph.
-  """
-  totalNodes: Int!
+  podcastSearch(searchTerm: String!): [PodcastSearchResult]
     @cypher(
       statement: """
-      MATCH (n) RETURN COUNT(n)
+      CALL apoc.load.jsonParams('https://itunes.apple.com/search?media=podcast&term=' + apoc.text.urlencode($searchTerm), null, null, null) YIELD value
+      UNWIND value.results AS result
+      RETURN {
+       iTunesId: result.collectionId,
+       title: result.collectionName,
+       releaseDate: result.releaseDate,
+       feedURL: result.feedUrl,
+       categories: result.genres
+      }
       """
     )
 }
