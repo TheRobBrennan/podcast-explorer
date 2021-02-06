@@ -1,3 +1,4 @@
+import "../styles/global.css"
 import { AuthProvider } from "../apollo/context"
 
 export default function App({ Component, pageProps }) {
