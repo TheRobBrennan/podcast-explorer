@@ -6,7 +6,7 @@ import { decodeAuth0JWT as func } from "./decodeAuth0JWT"
 describe("Our Auth0 decodeAuth0JWT lib", () => {
   afterEach(cleanup)
 
-  // REVISIT: Enable skipped tests if Auth0 support has been added
+  // REVISIT: Enable skipped tests when Auth0 is supported
   describe.skip("when supplied with a valid JWT token", () => {
     it("should receive a decoded JWT object", async () => {
       const result = await func(VALID_JWT_TOKEN)
