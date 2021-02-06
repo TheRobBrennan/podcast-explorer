@@ -1,5 +1,6 @@
 import { decodeAuth0JWT } from "./decodeAuth0JWT"
 
+/* istanbul ignore next */
 export const decodeAuthorizationHeader = async (
   authorizationHeaderValue: string
 ) => {

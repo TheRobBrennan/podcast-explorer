@@ -15,6 +15,7 @@ const Header: FC = () => {
   const KEYWORDS = "nextjs, react, grandstack, neo4j, typescript, apollo"
 
   const router = useRouter()
+  /* istanbul ignore next */
   const launchGraphIQL = (e) => {
     e.preventDefault()
     router.push("/api/graphql")
