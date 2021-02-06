@@ -4,9 +4,9 @@ import {
   event,
 } from "./googleAnalytics"
 
-// REVISIT: Enable Google Analytics test when analytics are enabled
-describe.skip("Our Google Analytics library", () => {
-  describe("should contain a GOOGLE_ANALYTICS_TRACKING_ID that", () => {
+describe("Our Google Analytics library", () => {
+  // REVISIT: Enable Google Analytics test when analytics are enabled
+  describe.skip("should contain a GOOGLE_ANALYTICS_TRACKING_ID that", () => {
     it("has been defined", () => {
       expect(GOOGLE_ANALYTICS_TRACKING_ID).toBeDefined()
     })
