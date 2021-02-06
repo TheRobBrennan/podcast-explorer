@@ -1,17 +1,8 @@
 import { NextPage } from "next"
 
-import Layout from "../heimdall/layout/Layout"
-import ReactPlayerDemo from "../heimdall/components/ReactPlayer/ReactPlayerDemo"
+import Layout from "../podcast-explorer/layout/Layout"
 
 const DefaultPage: NextPage = () => {
-  return (
-    <Layout>
-      <>
-        <div style={{ display: "block", margin: "auto" }}>
-          <ReactPlayerDemo />
-        </div>
-      </>
-    </Layout>
-  )
+  return <Layout />
 }
 export default DefaultPage
