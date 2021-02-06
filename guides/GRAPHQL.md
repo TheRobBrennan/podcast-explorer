@@ -29,6 +29,8 @@ query searchiTunesPodcasts($searchTerm: String!) {
 }
 ```
 
+![../app/__screenshots__/graphiql-example-query-search-itunes-podcasts-01.png](../app/__screenshots__/graphiql-example-query-search-itunes-podcasts-01.png)
+
 This should result in a response like:
 
 ```json
@@ -46,3 +48,5 @@ This should result in a response like:
   }
 }
 ```
+
+![../app/__screenshots__/graphiql-example-query-search-itunes-podcasts-02.png](../app/__screenshots__/graphiql-example-query-search-itunes-podcasts-02.png)
