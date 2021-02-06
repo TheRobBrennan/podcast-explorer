@@ -1,5 +1,6 @@
 import jwt_decode from "jwt-decode"
 
+/* istanbul ignore next */
 export const decodeJWT = (token: string) => {
   try {
     const decoded = jwt_decode(token)

@@ -1,6 +1,6 @@
 import { driver } from "./db"
 
-describe.skip("Neo4j database driver", () => {
+describe("Neo4j database driver", () => {
   describe("should export a Neo4j driver that", () => {
     it("has been defined", () => {
       expect(driver).toBeDefined()

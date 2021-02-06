@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken"
 import jwksClient from "jwks-rsa"
 
+/* istanbul ignore next */
 export const decodeAuth0JWT = async (token) => {
   return new Promise((resolve, reject) => {
     try {

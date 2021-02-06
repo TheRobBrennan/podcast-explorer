@@ -3,15 +3,18 @@ import { cleanup } from "@testing-library/react"
 import { VALID_JWT_TOKEN } from "./index"
 import { decodeAuthorizationHeader as func } from "./decodeAuthorizationHeader"
 
-describe.skip("Our Auth0 decodeAuthorizationHeader lib", () => {
+describe("Our Auth0 decodeAuthorizationHeader lib", () => {
   afterEach(cleanup)
-  describe('when supplied with a valid "Bearer <token>" string', () => {
+
+  // REVISIT: Enable skipped tests when Auth0 is supported
+  describe.skip('when supplied with a valid "Bearer <token>" string', () => {
     it("should receive a decoded JWT object", async () => {
       const mockHttpAuthorizationHeaderValue = `Bearer ${VALID_JWT_TOKEN}`
       const result = await func(mockHttpAuthorizationHeaderValue)
       expect(result).toMatchSnapshot()
     })
   })
+
   describe('when supplied with a string that does not contain a valid "Bearer <token>"', () => {
     it("should return undefined", async () => {
       const mockHttpAuthorizationHeaderValue = `Bearer fakeToken`
