@@ -2,6 +2,12 @@
 
 This project is a continuation of my [Heimdall](https://github.com/TheRobBrennan/heimdall) project - which explores using the new alpha release of the [@neo4j/graphql](@neo4j/graphql) library within a [GRANDstack](https://grandstack.io) ([GraphQL](https://graphql.org), [React](https://reactjs.org), [Apollo](https://www.apollographql.com), [Neo4j Database](https://neo4j.com)) application.
 
+![app/__screenshots__/nextjs-app-launch-graphiql.png](app/__screenshots__/nextjs-app-launch-graphiql.png)
+![app/__screenshots__/graphiql-example-query-search-itunes-podcasts-01.png](app/__screenshots__/graphiql-example-query-search-itunes-podcasts-01.png)
+![app/__screenshots__/graphiql-example-query-search-itunes-podcasts-02.png](app/__screenshots__/graphiql-example-query-search-itunes-podcasts-02.png)
+![app/__screenshots__/graphiql-example-query-search-itunes-podcasts-03.png](app/__screenshots__/graphiql-example-query-search-itunes-podcasts-03.png)
+![app/__screenshots__/graphiql-example-query-search-itunes-podcasts-04.png](app/__screenshots__/graphiql-example-query-search-itunes-podcasts-04.png)
+
 ## Getting started
 
 To run this example, all you need to have installed on your development system is [Docker](https://www.docker.com) and [Node.js](https://nodejs.org/).
