@@ -1,3 +1,6 @@
+// Use Cypher command "CALL db.constraints()" to view constraints for your Neo4j database
+CREATE CONSTRAINT constraint_user_unique_username IF NOT EXISTS ON ( u:User ) ASSERT u.username IS UNIQUE;
+
 // EXAMPLE: Create example Ping node(s)
 // WITH apoc.date.currentTimestamp() as currentTimestamp
 // CREATE (:Ping { id: randomUUID(), createdAt: datetime({epochMillis: currentTimestamp}), createdBy: '** Neo4j database seed **' });
