@@ -18,11 +18,6 @@ extend type AuthToken @exclude(operations: "*")
 
 type Podcast {
   iTunesId: ID!
-  # title: String
-  # link: String
-  # feedURL: String
-  # description: String
-  # image: String
 }
 
 type PodcastSearchResult {
