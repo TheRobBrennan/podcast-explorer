@@ -22,6 +22,10 @@ type Podcast {
   releaseDate: DateTime
   feedURL: String!
   categories: [String]
+  createdAt: DateTime @autogenerate(operations: ["create"])
+  createdBy: ID
+  updatedAt: DateTime @autogenerate(operations: ["update"])
+  updatedBy: ID
 }
 
 type PodcastSearchResult {
@@ -74,6 +78,17 @@ type Query {
       }
       """
     )
+
+  """
+  Return all podcasts that the authenticated user has subscribed to.
+  """
+  subscribedPodcasts: [Podcast]
+    @cypher(
+      statement: """
+      MATCH (u:User {id: $jwt.id})-[:SUBSCRIBES_TO]->(p:Podcast)
+      RETURN p
+      """
+    )
 }
 
 type Mutation {
@@ -83,13 +98,25 @@ type Mutation {
     @cypher(
       statement: """
       CALL apoc.load.jsonParams('https://itunes.apple.com/lookup?id=' + apoc.text.urlencode($iTunesId), null, null, null) YIELD value
-      WITH value.results[0] as podcast
+      WITH
+        value.results[0] as podcast,
+        apoc.date.currentTimestamp() as currentTimestamp
       MATCH (u:User {id: $jwt.id})
       MERGE (p:Podcast {iTunesId: $iTunesId})
-        SET p.title = podcast.collectionName,
+        ON CREATE SET
+            p.title = podcast.collectionName,
             p.releaseDate = podcast.releaseDate,
             p.feedURL = podcast.feedUrl,
-            p.categories = podcast.genres
+            p.categories = podcast.genres,
+            p.createdAt = datetime({epochMillis: currentTimestamp}),
+            p.createdBy = u.id
+        ON MATCH SET
+            p.title = podcast.collectionName,
+            p.releaseDate = podcast.releaseDate,
+            p.feedURL = podcast.feedUrl,
+            p.categories = podcast.genres,
+            p.updatedAt = datetime({epochMillis: currentTimestamp}),
+            p.updatedBy = u.id
       MERGE (u)-[:SUBSCRIBES_TO]->(p)
       RETURN p
       """
