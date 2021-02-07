@@ -8,4 +8,11 @@ describe("Our GraphQL resolvers should contain", () => {
       expect(Query).toBeDefined()
     })
   })
+  describe("A Mutation object", () => {
+    const { Query } = resolvers
+
+    it("that has been defined", () => {
+      expect(Query).toBeDefined()
+    })
+  })
 })

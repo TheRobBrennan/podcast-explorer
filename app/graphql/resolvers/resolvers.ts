@@ -12,10 +12,47 @@
  *  https://www.notion.so/neo4j-graphql-v1-0-0-alpha-2-d47908030d4e4a0c86babbaef63887d0
  */
 
+import jwt from "jsonwebtoken"
+import { hash } from "bcrypt"
+
 export const resolvers = {
-  Query: {
-    // async hello(_parent, _args, _context) {
-    //   return `Hello. The current timestamp is ${Date.now()}`
-    // },
+  Query: {},
+  Mutation: {
+    signup: async (_root, { username, password }, context) => {
+      // Update our password argument to be a hashed representation of the originally supplied plain-text password
+      password = await hash(password, 10)
+
+      // Define our Cypher command(s) and parameter(s)
+      // NOTE:  We have to explicitly set values that are marked with @autogenerate directives in our GraphQL schema.
+      //        This is because we are not using automatically generated mutations to perform the node creation;
+      //        we are explicitly creating a node at the database level here.
+      const cypher = `
+      WITH apoc.date.currentTimestamp() as currentTimestamp
+      CREATE (u:User) SET
+        u.id = randomUUID(),
+        u.username = $username,
+        u.password = $password,
+        u.createdAt = datetime({epochMillis: currentTimestamp})
+      RETURN u
+      `
+      const params = { username, password }
+
+      // Attempt to create a new User
+      const session = context.driver.session()
+      const signupRes = await session.writeTransaction((tx) =>
+        tx.run(cypher, params)
+      )
+      session.close()
+
+      // Our response will contain an array of records. We just want the first one.
+      const { id, username: user } = signupRes?.records[0]?.get(0)?.properties
+
+      // Return a JWT token in the AuthToken object shape we have defined in our GraphQL schema
+      return {
+        token: jwt.sign({ id, user }, process.env.JWT_SECRET, {
+          expiresIn: "2h",
+        }),
+      }
+    },
   },
 }
