@@ -9,8 +9,8 @@ This guide will demonstrate the following GraphQL examples:
 - Mutations
   - Create a new user account
   - Log in with a user account
-  - Subscribe to a podcast
-  - Unsubscribe to a podcast
+  - Subscribe to a podcast for the currently authenticated user
+  - Unsubscribe to a podcast for the currently authenticated user
 
 ## Queries
 
@@ -214,7 +214,7 @@ This should result in a response like:
 }
 ```
 
-### Subscribe to a podcast
+### Subscribe to a podcast for the currently authenticated user
 
 This mutation uses the JWT from the currently authenticated user to subscribe to a podcast in our database.
 
@@ -262,7 +262,7 @@ This should result in a response like:
 }
 ```
 
-### Unsubscribe to a podcast
+### Unsubscribe to a podcast for the currently authenticated user
 
 This mutation uses the JWT from the currently authenticated user to unsubscribe to a podcast in our database.
 
