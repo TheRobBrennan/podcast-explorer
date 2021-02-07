@@ -19,6 +19,9 @@ First, copy `app/.env.sample` to `app/.env` - the default settings should work w
 # ---------------------------------------------------------------------------
 # EXAMPLE ./app/.env
 # ---------------------------------------------------------------------------
+# A 256-bit secret to sign our JWT tokens - See https://randomkeygen.com for examples
+JWT_SECRET=ETugGmcmX7qFu9z6C6lPVrfet2fjyuVH
+
 # Neo4j v4.x.x Community Edition [DOCKER]
 NEO4J_URI=bolt://neo4j:7687
 NEO4J_USER=neo4j

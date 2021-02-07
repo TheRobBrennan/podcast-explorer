@@ -25,6 +25,6 @@ module.exports = withPlugins([[withImages], [withBundleAnalyzer]], {
     return config
   },
   env: {
-    // JWT_SECRET: process.env.JWT_SECRET
+    JWT_SECRET: process.env.JWT_SECRET,
   },
 })

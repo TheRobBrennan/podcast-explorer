@@ -1,6 +1,8 @@
-# We don't need screenshots in our Docker container
-__screenshots__
+# Node.js
+node_modules
 
 # Next.js
 .next
-.node_modules
+
+# We don't need screenshots in our Docker container
+__screenshots__

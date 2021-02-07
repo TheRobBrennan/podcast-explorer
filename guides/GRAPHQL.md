@@ -3,11 +3,13 @@
 This guide will demonstrate the following GraphQL examples:
 
 - Queries
-  - EXAMPLE: Search the iTunes Podcast Directory
+  - Search the iTunes Podcast Directory
+- Mutations
+  - Create a new user account
 
 ## Queries
 
-### EXAMPLE: Search the iTunes Podcast Directory
+### Search the iTunes Podcast Directory
 
 ```gql
 # Example query in GraphIQL
@@ -50,3 +52,29 @@ This should result in a response like:
 ```
 
 ![../app/__screenshots__/graphiql-example-query-search-itunes-podcasts-02.png](../app/__screenshots__/graphiql-example-query-search-itunes-podcasts-02.png)
+
+## Mutations
+
+### Create a new user account
+
+```gql
+mutation {
+  signup(username: "rob", password: "test") {
+    token
+  }
+}
+```
+
+![../app/__screenshots__/graphiql-example-mutation-signup.png](../app/__screenshots__/graphiql-example-mutation-signup.png)
+
+This should result in a response like:
+
+```json
+{
+  "data": {
+    "signup": {
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRlZDQzM2FhLTc1NzItNGFmYS1hZmI3LTUyZDcwNGExMDkxMyIsInVzZXIiOiJyb2IiLCJpYXQiOjE2MTI2ODgxNjAsImV4cCI6MTYxMjY5NTM2MH0.9AigzKr-xO4ppvwcn77S4IsAQpX7t_o4BvsIfLEGnAI"
+    }
+  }
+}
+```

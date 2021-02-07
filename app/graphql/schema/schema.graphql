@@ -23,6 +23,11 @@ type Ping {
 # extend type Ping @exclude(operations: "*")
 extend type Ping @exclude(operations: ["create", "update", "delete"])
 
+type AuthToken {
+  token: String!
+}
+extend type AuthToken @exclude(operations: "*")
+
 type PodcastSearchResult {
   iTunesId: Int!
   title: String!
@@ -31,6 +36,14 @@ type PodcastSearchResult {
   categories: [String]
 }
 extend type PodcastSearchResult @exclude(operations: "*")
+
+type User {
+  id: ID! @autogenerate
+  username: String!
+  password: String!
+  createdAt: DateTime @autogenerate(operations: ["create"])
+  updatedAt: DateTime @autogenerate(operations: ["update"])
+}
 
 type Query {
   """
@@ -59,4 +72,8 @@ type Query {
       }
       """
     )
+}
+
+type Mutation {
+  signup(username: String!, password: String!): AuthToken
 }
