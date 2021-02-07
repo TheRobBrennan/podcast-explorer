@@ -4,6 +4,7 @@ This guide will demonstrate the following GraphQL examples:
 
 - Queries
   - Search the iTunes Podcast Directory
+  - Display details for the currently authenticated user
 - Mutations
   - Create a new user account
   - Log in with a user account
@@ -25,8 +26,9 @@ query searchiTunesPodcasts($searchTerm: String!) {
 }
 ```
 
-```gql
-# Query Variables (located underneath the query window in GraphIQL)
+Query Variables (located underneath the query window in GraphIQL)
+
+```json
 {
   "searchTerm": "Graph database"
 }
@@ -53,6 +55,40 @@ This should result in a response like:
 ```
 
 ![../app/__screenshots__/graphiql-example-query-search-itunes-podcasts-02.png](../app/__screenshots__/graphiql-example-query-search-itunes-podcasts-02.png)
+
+### Display details for the currently authenticated user
+
+```gql
+query currentUser() {
+  me {
+    id
+    username
+    password
+  }
+}
+```
+
+HTTP Headers (located underneath the query window in GraphIQL)
+
+```json
+{
+  "Authorization": "Bearer <JWT_TOKEN>"
+}
+```
+
+This should result in a response like:
+
+```json
+{
+  "data": {
+    "me": {
+      "id": "4ed433aa-7572-4afa-afb7-52d704a10913",
+      "username": "rob",
+      "password": "$2b$10$X8ndq9WIZrN38ZxMhb/E5OPBllNgFdNfuSef1FSXbqNdOezaxSmCS"
+    }
+  }
+}
+```
 
 ## Mutations
 
