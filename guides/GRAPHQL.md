@@ -155,14 +155,21 @@ This should result in a response like:
 ### Create a new user account
 
 ```gql
-mutation {
-  signup(username: "rob", password: "test") {
+mutation($username: String!, $password: String!) {
+  signup(username: $username, password: $password) {
     token
   }
 }
 ```
 
-![../app/__screenshots__/graphiql-example-mutation-signup.png](../app/__screenshots__/graphiql-example-mutation-signup.png)
+Query Variables (located underneath the query window in GraphIQL)
+
+```json
+{
+  "username": "justauser",
+  "password": "letmein"
+}
+```
 
 This should result in a response like:
 
@@ -170,7 +177,7 @@ This should result in a response like:
 {
   "data": {
     "signup": {
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRlZDQzM2FhLTc1NzItNGFmYS1hZmI3LTUyZDcwNGExMDkxMyIsInVzZXIiOiJyb2IiLCJpYXQiOjE2MTI2ODgxNjAsImV4cCI6MTYxMjY5NTM2MH0.9AigzKr-xO4ppvwcn77S4IsAQpX7t_o4BvsIfLEGnAI"
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliN2I3MDBhLWE5MTktNDI5Ni05YzhlLTJmMzRmNjE5N2Q1MyIsInVzZXIiOiJqdXN0YXVzZXIiLCJpYXQiOjE2MTI3MjYwMTEsImV4cCI6MTYxMjczMzIxMX0.WR4oCqEFtmDU9LWaHlQVCaJQwFpcJxKdgSzgJqzMl4Q"
     }
   }
 }
