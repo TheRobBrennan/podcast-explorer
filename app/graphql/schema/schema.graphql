@@ -1,29 +1,10 @@
-"""
-Ping represents the first placeholder node type in our system
-"""
-type Ping {
-  id: ID! @autogenerate
-
-  """
-  This field is automatically populated whenever a Ping node is created through the GraphQL API
-  """
-  createdAt: DateTime @autogenerate(operations: ["create"])
-
-  createdBy: String
-
-  """
-  This field is automatically populated whenever a Ping node is updated through the GraphQL API
-  """
-  updatedAt: DateTime @autogenerate(operations: ["update"])
-  updatedBy: String
-}
-
-# Do not generate queries, resolvers, and mutations
+# See the following guide for generating custom resolvers and optionally excluding queries and mutations from being automatically generated
 # https://www.notion.so/neo4j-graphql-v1-0-0-alpha-2-d47908030d4e4a0c86babbaef63887d0
-# extend type Ping @exclude(operations: "*")
-extend type Ping @exclude(operations: ["create", "update", "delete"])
 
 type AuthToken {
+  """
+  HS 256-bit encrypted JWT
+  """
   token: String!
 }
 extend type AuthToken @exclude(operations: "*")
