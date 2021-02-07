@@ -57,4 +57,5 @@ type Query {
 
 type Mutation {
   signup(username: String!, password: String!): AuthToken
+  login(username: String!, password: String!): AuthToken
 }
