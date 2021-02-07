@@ -5,8 +5,6 @@ This project is a continuation of my [Heimdall](https://github.com/TheRobBrennan
 ![app/__screenshots__/nextjs-app-launch-graphiql.png](app/__screenshots__/nextjs-app-launch-graphiql.png)
 ![app/__screenshots__/graphiql-example-query-search-itunes-podcasts-01.png](app/__screenshots__/graphiql-example-query-search-itunes-podcasts-01.png)
 ![app/__screenshots__/graphiql-example-query-search-itunes-podcasts-02.png](app/__screenshots__/graphiql-example-query-search-itunes-podcasts-02.png)
-![app/__screenshots__/graphiql-example-query-search-itunes-podcasts-03.png](app/__screenshots__/graphiql-example-query-search-itunes-podcasts-03.png)
-![app/__screenshots__/graphiql-example-query-search-itunes-podcasts-04.png](app/__screenshots__/graphiql-example-query-search-itunes-podcasts-04.png)
 
 ## Getting started
 
