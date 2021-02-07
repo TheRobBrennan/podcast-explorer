@@ -18,6 +18,10 @@ extend type AuthToken @exclude(operations: "*")
 
 type Podcast {
   iTunesId: ID!
+  title: String!
+  releaseDate: DateTime
+  feedURL: String!
+  categories: [String]
 }
 
 type PodcastSearchResult {
@@ -78,8 +82,14 @@ type Mutation {
   subscribeToPodcast(iTunesId: String!): Podcast
     @cypher(
       statement: """
+      CALL apoc.load.jsonParams('https://itunes.apple.com/lookup?id=' + apoc.text.urlencode($iTunesId), null, null, null) YIELD value
+      WITH value.results[0] as podcast
       MATCH (u:User {id: $jwt.id})
       MERGE (p:Podcast {iTunesId: $iTunesId})
+        SET p.title = podcast.collectionName,
+            p.releaseDate = podcast.releaseDate,
+            p.feedURL = podcast.feedUrl,
+            p.categories = podcast.genres
       MERGE (u)-[:SUBSCRIBES_TO]->(p)
       RETURN p
       """

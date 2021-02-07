@@ -145,12 +145,17 @@ This should result in a response like:
 
 This mutation uses the JWT from the currently authenticated user to subscribe to a podcast in our database.
 
-````gql
+```gql
 mutation {
-  subscribeToPodcast(iTunesId:"975377379"){
+  subscribeToPodcast(iTunesId: "975377379") {
     iTunesId
+    title
+    releaseDate
+    feedURL
+    categories
   }
-}```
+}
+```
 
 HTTP Headers (located underneath the query window in GraphIQL)
 
@@ -158,7 +163,7 @@ HTTP Headers (located underneath the query window in GraphIQL)
 {
   "Authorization": "Bearer <JWT_TOKEN>"
 }
-````
+```
 
 This should result in a response like:
 
@@ -166,7 +171,11 @@ This should result in a response like:
 {
   "data": {
     "subscribeToPodcast": {
-      "iTunesId": "975377379"
+      "iTunesId": "975377379",
+      "title": "Graphistania: Podcast for Neo4j Graph Database community",
+      "releaseDate": "2021-01-11T00:00:00.000Z",
+      "feedURL": "http://feeds.soundcloud.com/users/soundcloud:users:141739624/sounds.rss",
+      "categories": ["Technology", "Podcasts"]
     }
   }
 }
