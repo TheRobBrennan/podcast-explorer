@@ -38,6 +38,20 @@ type Query {
       """
     )
 
+  """
+  A sample query to return details for the authenticated user currently logged in to our system
+  """
+  me: User
+    @cypher(
+      statement: """
+      MATCH (u:User {id: $jwt.id})
+      RETURN u
+      """
+    )
+
+  """
+  Search the canonical iTunes API for podcasts matching the provided searchTerm
+  """
   podcastSearch(searchTerm: String!): [PodcastSearchResult]
     @cypher(
       statement: """
