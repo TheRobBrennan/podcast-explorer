@@ -50,3 +50,7 @@ RETURN u
 // Delete all User nodes and relationships for a user with a specific email address
 MATCH (u:User { email: 'test@nomail.com' })
 DETACH DELETE u
+
+// Create a relationship if one doesn't exist already
+MATCH (jen:User { username: 'Jen' }),(opensource:Theme { title: 'Open Source' })
+MERGE (jen)-[r:LOVES]->(opensource)
