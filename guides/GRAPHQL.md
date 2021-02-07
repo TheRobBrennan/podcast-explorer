@@ -5,6 +5,7 @@ This guide will demonstrate the following GraphQL examples:
 - Queries
   - Search the iTunes Podcast Directory
   - Display details for the currently authenticated user
+  - Display all subscribed podcasts for the currently authenticated user
 - Mutations
   - Create a new user account
   - Log in with a user account
@@ -89,6 +90,61 @@ This should result in a response like:
       "username": "rob",
       "password": "$2b$10$X8ndq9WIZrN38ZxMhb/E5OPBllNgFdNfuSef1FSXbqNdOezaxSmCS"
     }
+  }
+}
+```
+
+### Display all subscribed podcasts for the currently authenticated user
+
+This query uses the JWT from the currently authenticated user to retrieve podcasts that the user has subscribed to.
+
+```gql
+query myPodcasts() {
+  subscribedPodcasts{
+    title
+    iTunesId
+    releaseDate
+    feedURL
+    categories
+    createdBy
+    updatedBy
+  }
+}
+```
+
+HTTP Headers (located underneath the query window in GraphIQL)
+
+```json
+{
+  "Authorization": "Bearer <JWT_TOKEN>"
+}
+```
+
+This should result in a response like:
+
+```json
+{
+  "data": {
+    "subscribedPodcasts": [
+      {
+        "title": "Accidental Tech Podcast",
+        "iTunesId": "617416468",
+        "releaseDate": "2021-02-04T16:24:00.000Z",
+        "feedURL": "https://atp.fm/episodes?format=rss",
+        "categories": ["Technology", "Podcasts"],
+        "createdBy": "4ed433aa-7572-4afa-afb7-52d704a10913",
+        "updatedBy": null
+      },
+      {
+        "title": "Graphistania: Podcast for Neo4j Graph Database community",
+        "iTunesId": "975377379",
+        "releaseDate": "2021-01-11T00:00:00.000Z",
+        "feedURL": "http://feeds.soundcloud.com/users/soundcloud:users:141739624/sounds.rss",
+        "categories": ["Technology", "Podcasts"],
+        "createdBy": "4ed433aa-7572-4afa-afb7-52d704a10913",
+        "updatedBy": null
+      }
+    ]
   }
 }
 ```
