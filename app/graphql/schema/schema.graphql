@@ -32,7 +32,7 @@ type PodcastSearchResult {
   iTunesId: Int!
   title: String!
   releaseDate: DateTime
-  feedURL: String!
+  feedURL: String
   categories: [String]
 }
 extend type PodcastSearchResult @exclude(operations: "*")
