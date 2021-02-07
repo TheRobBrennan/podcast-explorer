@@ -12,8 +12,8 @@
     "start": "next start",
     "test": "jest",
     "test:ci": "jest --ci",
-    "test:coverage": "jest --coverage",
-    "test:coverage:view": "jest --coverage && open coverage/lcov-report/index.html",
+    "test:coverage": "rm -rf coverage && jest --coverage",
+    "test:coverage:view": "rm -rf coverage && jest --coverage && open coverage/lcov-report/index.html",
     "test:verbose": "jest --verbose --silent",
     "test:watch": "jest --watch",
     "test:watchAll": "jest --watchAll"
