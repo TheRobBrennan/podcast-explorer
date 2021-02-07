@@ -10,6 +10,7 @@ This guide will demonstrate the following GraphQL examples:
   - Create a new user account
   - Log in with a user account
   - Subscribe to a podcast
+  - Unsubscribe to a podcast
 
 ## Queries
 
@@ -244,3 +245,39 @@ This should result in a response like:
   }
 }
 ```
+
+### Unsubscribe to a podcast
+
+This mutation uses the JWT from the currently authenticated user to unsubscribe to a podcast in our database.
+
+````gql
+mutation ($iTunesId:String!) {
+  unsubscribeToPodcast(iTunesId:$iTunesId)
+}
+```
+
+Query Variables (located underneath the query window in GraphIQL)
+
+```json
+{
+  "iTunesId": "617416468"
+}
+````
+
+HTTP Headers (located underneath the query window in GraphIQL)
+
+```json
+{
+  "Authorization": "Bearer <JWT_TOKEN>"
+}
+```
+
+This should result in a response like:
+
+````json
+{
+  "data": {
+    "unsubscribeToPodcast": "SUCCESS: You are no longer subscribed to Accidental Tech Podcast"
+  }
+}```
+````
