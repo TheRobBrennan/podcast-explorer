@@ -202,14 +202,22 @@ This should result in a response like:
 This mutation uses the JWT from the currently authenticated user to subscribe to a podcast in our database.
 
 ```gql
-mutation {
-  subscribeToPodcast(iTunesId: "975377379") {
+mutation($iTunesId: String!) {
+  subscribeToPodcast(iTunesId: $iTunesId) {
     iTunesId
     title
     releaseDate
     feedURL
     categories
   }
+}
+```
+
+Query Variables (located underneath the query window in GraphIQL)
+
+```json
+{
+  "iTunesId": "617416468"
 }
 ```
 
