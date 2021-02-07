@@ -16,6 +16,10 @@ type AuthToken {
 }
 extend type AuthToken @exclude(operations: "*")
 
+type Podcast {
+  iTunesId: ID!
+}
+
 type PodcastSearchResult {
   iTunesId: Int!
   title: String!
@@ -71,4 +75,13 @@ type Query {
 type Mutation {
   signup(username: String!, password: String!): AuthToken
   login(username: String!, password: String!): AuthToken
+  subscribeToPodcast(iTunesId: String!): Podcast
+    @cypher(
+      statement: """
+      MATCH (u:User {id: $jwt.id})
+      MERGE (p:Podcast {iTunesId: $iTunesId})
+      MERGE (u)-[:SUBSCRIBES_TO]->(p)
+      RETURN p
+      """
+    )
 }
