@@ -121,4 +121,12 @@ type Mutation {
       RETURN p
       """
     )
+  unsubscribeToPodcast(iTunesId: String!): String!
+    @cypher(
+      statement: """
+      MATCH (u:User {id: $jwt.id})-[rel:SUBSCRIBES_TO]->(p:Podcast)
+      DELETE rel
+      RETURN "SUCCESS: You are no longer subscribed to " + p.title
+      """
+    )
 }
