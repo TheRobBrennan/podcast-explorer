@@ -36,6 +36,7 @@
     "cross-fetch": "^3.0.5",
     "graphql-tag": "^2.11.0",
     "graphql-tools": "^6.0.18",
+    "jsonwebtoken": "^8.5.1",
     "neo4j-driver": "^4.2.2",
     "next": "^10.0.5",
     "next-compose-plugins": "^2.2.0",
