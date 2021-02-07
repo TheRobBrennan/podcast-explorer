@@ -13,7 +13,7 @@
  */
 
 import jwt from "jsonwebtoken"
-import { hash } from "bcrypt"
+import { compare, hash } from "bcrypt"
 
 export const resolvers = {
   Query: {},
@@ -50,6 +50,40 @@ export const resolvers = {
       // Return a JWT token in the AuthToken object shape we have defined in our GraphQL schema
       return {
         token: jwt.sign({ id, user }, process.env.JWT_SECRET, {
+          expiresIn: "2h",
+        }),
+      }
+    },
+    login: async (_root, { username, password }, context) => {
+      // Define our Cypher command(s) and parameter(s)
+      const cypher = `
+      MATCH (u:User {username: $username})
+      RETURN u LIMIT 1
+      `
+      const params = { username }
+
+      // Attempt to find the User node with the specified username
+      const session = context.driver.session()
+      const loginRes = await session.writeTransaction((tx) =>
+        tx.run(cypher, params)
+      )
+      session.close()
+
+      // Our response will contain an array of records. We just want the first one.
+      const { id, password: p } = loginRes?.records[0]?.get(0)?.properties
+
+      // Check if our plain-text password matches the hashed password stored for our user node
+      const isAuthenticated = await compare(password, p)
+
+      if (!isAuthenticated) {
+        throw new Error(
+          "Authentication error: Please supply a valid username and password"
+        )
+      }
+
+      // Return a JWT token in the AuthToken object shape we have defined in our GraphQL schema
+      return {
+        token: jwt.sign({ id, username }, process.env.JWT_SECRET, {
           expiresIn: "2h",
         }),
       }

@@ -1,5 +1,12 @@
 # See the following guide for generating custom resolvers and optionally excluding queries and mutations from being automatically generated
 # https://www.notion.so/neo4j-graphql-v1-0-0-alpha-2-d47908030d4e4a0c86babbaef63887d0
+type User {
+  id: ID! @autogenerate
+  username: String!
+  password: String!
+  createdAt: DateTime @autogenerate(operations: ["create"])
+  updatedAt: DateTime @autogenerate(operations: ["update"])
+}
 
 type AuthToken {
   """
@@ -17,14 +24,6 @@ type PodcastSearchResult {
   categories: [String]
 }
 extend type PodcastSearchResult @exclude(operations: "*")
-
-type User {
-  id: ID! @autogenerate
-  username: String!
-  password: String!
-  createdAt: DateTime @autogenerate(operations: ["create"])
-  updatedAt: DateTime @autogenerate(operations: ["update"])
-}
 
 type Query {
   """
@@ -57,4 +56,5 @@ type Query {
 
 type Mutation {
   signup(username: String!, password: String!): AuthToken
+  login(username: String!, password: String!): AuthToken
 }
